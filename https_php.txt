@@ -1,0 +1,36 @@
+server {
+    # Listen on port 443 for HTTPS
+    listen 443 ssl;
+    server_name example.com www.example.com;  # Replace with your domain
+
+    # Root directory for website files
+    root /var/www/html; #it will have dynamic php file 
+    index index.php index.html;
+
+    # SSL certificate and key paths
+    ssl_certificate /etc/ssl/certs/example.com.crt;  # Replace with your SSL certificate path
+    ssl_certificate_key /etc/ssl/private/example.com.key;  # Replace with your SSL key path
+
+    # SSL settings (Optional: keep default settings for now)
+    ssl_protocols TLSv1.2 TLSv1.3;
+    ssl_ciphers HIGH:!aNULL:!MD5;
+
+    # Handle PHP files
+    location / {
+        try_files $uri $uri/ =404;  # Look for files or return 404 if not found
+    }
+
+    location ~ \.php$ {
+        include snippets/fastcgi-php.conf;  # Default FastCGI configuration
+        fastcgi_pass unix:/run/php/php8.1-fpm.sock;  # Path to PHP-FPM socket (adjust for your PHP version)
+        fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;  # Full path to the PHP file
+        include fastcgi_params;  # Include additional FastCGI parameters
+    }
+
+    # Block access to hidden files like .htaccess
+    location ~ /\.ht {
+        deny all;
+    }
+}
+
+

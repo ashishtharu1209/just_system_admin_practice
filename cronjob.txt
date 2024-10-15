@@ -1,0 +1,15 @@
+run crontab -e in terminal it will open cronjob file 
+
+#simply add job according to choice 
+
+ e.g
+   50 22 * * * /home/aashish/backup2/backup.sh //runs backup.sh in 10:50 pm everyday
+0 12 * * * /home/aashish/bash_practice/cron.sh //runs cron.sh in 12:00 am everyday
+0 12 * * * /home/aashish/bash_practice/cron.sh    # here .sh extension are for bash file which will have commands for any task you will assign
+0 12 * * * /home/aashish/bash_practice/disk.sh
+0 12 * * * /home/aashish/bash_practice/report.sh
+0 2  * * 0 /home/aashish/bash_practice/mysql_backup.sh
+
+
+
+

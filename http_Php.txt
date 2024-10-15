@@ -1,0 +1,26 @@
+server {
+        listen 80;
+        root /home/aashish/Test1/; #this dir has dynamic php file
+        index index.php index.html index.htm index.nginx-debian.html;
+        server_name 192.168.1.69;
+	access_log /var/log/nginx/test_access.log;
+	error_log /var/log/nginx/test_error.log;
+
+        location / {
+                try_files $uri $uri/ =404;
+        }
+
+        location ~ \.php$ {
+                include snippets/fastcgi-php.conf;
+                fastcgi_pass unix:/var/run/php/php7.4-fpm.sock;
+        }
+
+        location ~ /\.ht {
+                deny all;
+        }
+}
+
+
+
+#make sure to change ownership of root file to the same owner of nginx. For my case it was sudo chown -R www-data:www-data Test1/
+#change the mode of root directory too according to requirement.i.e Chmod

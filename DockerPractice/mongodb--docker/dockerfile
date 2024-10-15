@@ -1,0 +1,9 @@
+# Use the official MongoDB image from Docker Hub
+FROM mongo:4.4
+
+
+EXPOSE 27017
+
+VOLUME /data/db
+
+CMD ["mongod"]

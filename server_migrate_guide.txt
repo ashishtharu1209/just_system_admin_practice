@@ -1,0 +1,27 @@
+#Steps to migrate server
+
+Backup Files: tar -czvf backup_files.tar.gz /path/to/source_directory in old server
+
+Backup MySQL: mysqldump -u username -p database_name > database_backup.sql in old server
+
+Install Software: sudo apt install nginx or sudo apt install mysql-server in new server
+
+Transfer Files: scp backup_files.tar.gz user@target_server_ip:/path/to/target_directory 
+
+Sync Files: rsync -avz /path/to/source_directory/ user@target_server_ip:/path/to/target_directory/
+
+Update Configuration: sudo nano /etc/nginx/sites-available/default
+
+Check Status: sudo systemctl status nginx
+
+DNS Update:
+Update DNS records to point to the new server's IP address.
+This is usually done through your domain registrar's control panel
+
+Monitor Logs: tail -f /var/log/nginx/access.log
+
+Shut Down Old Server: sudo shutdown -h now
+
+#each steps are in other files too
+
+

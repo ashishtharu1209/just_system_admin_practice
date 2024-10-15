@@ -1,0 +1,11 @@
+#mysql Backup
+ sudo mysqldump -u root -p db1 > test.sql -->> here test.sql is new sql file in which backup of db1 will be carried  where u and p are username and password
+     here "<"this symbol is import & ">" is export  
+     now we can import the test.sql easily to new database using { sudo mysqldump -u root -p db2<test.sql }
+#file dir backup 
+
+tar -czvf documents_backup.tar.gz /home/user/documents
+             #documents_backup.tar.gz --->>backuped data
+             #/home/user/documents --->> dir to backup
+             
+ 

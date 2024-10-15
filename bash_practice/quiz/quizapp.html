@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" type="image" href="360_F_334911143_KCNuw7gi3UZEcviMgu5xpVvfGsBRGaoQ.jpg">
+  <title>Quiz App</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background: url("hill.jpg") no-repeat center center/cover;
+    
+}
+   #quiz-container {
+      max-width: 600px;
+      margin: auto;
+    align-items: center;
+    margin-top: 250px;
+    }
+
+    #question {
+      font-size: 1.8em;
+      margin-bottom: 20px;
+      font-weight: bolder;
+      color: aqua;
+    }
+
+    #options {
+      display: flex;
+      flex-direction: column;
+       color: #f9004d;
+      font-weight: bolder;
+      font-size: 30px;
+      font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    
+    }
+
+    .option{
+      padding: 10px;
+      border: 5px solid #ccc;
+      cursor: pointer;
+      
+    }
+
+    .option:hover {
+      background-color:green;
+    }
+
+    #result {
+      margin-top: 20px;
+      font-weight: bold;
+      color: gold;
+    }
+   button{
+    background-color:magenta;
+	color:black;
+	text-decoration: none;
+	border: 2px solid transparent;
+	font-weight: bold;
+	padding: 10px 25px;
+	border-radius: 30px;
+	transition: transform .4s; 
+    }
+    button:hover{
+	background-color: transparent;
+	border: 2px solid #f9004d;
+	cursor: pointer;
+    
+    }
+    h1{
+      font-weight: 800;
+      font-size: 80px;
+      font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    }
+
+  </style>
+</head>
+<body>
+  <h1><u>QUIZ APP</u></h1>
+
+<div id="quiz-container">
+  <div id="question"></div>
+  <div id="options"></div>
+  <div id="result"></div><br>
+  <button onclick="nextQuestion()">Next Question</button>
+  <button onclick="PrevQuestion()">Previous Quest</button>
+  
+</div>
+<script>
+const quizData = [
+{
+  question: "1.What is the capital of France?",
+  options: ["Paris", "London", "Berlin", "Madrid"],
+  correctAnswer: "Paris"
+},
+{
+  question: "2.Which planet is called the Red Planet?",
+  options: ["Earth", "Mars", "Jupiter", "Saturn"],
+  correctAnswer: "Mars"
+},
+{
+  question: "3.What is the largest mammal in the world?",
+  options: ["Elephant", "Blue Whale", "Giraffe", "Hippopotamus"],
+  correctAnswer: "Blue Whale"
+},
+{
+  question: "4.What is the largest ocean in the world?",
+  options: ["pacific", "Atlantic", "Arctic", "Indian"],
+  correctAnswer: "pacific"
+},
+{
+  question: "5.What is the tallest mountain in the world?",
+  options: ["everest", "K2", "Annapurna", "Alpes"],
+  correctAnswer: "everest"
+},
+{
+  question: "6.Who is the called father of Computer?",
+  options: ["pascal", "marconi", "charles Babbage", "lady adda"],
+  correctAnswer: "charles Babbage"
+},
+{
+  question: "7.Who won the fifa worldcup 2022?",
+  options: ["Brazil", "France", "Argentina", "Portugal"],
+  correctAnswer: "Argentina"
+},
+{
+  question: "8.what is full form of VIP?",
+  options: ["very important person", "very important particle", "very important paragraph", "very important people"],
+  correctAnswer: "very important person"
+},
+{
+  question: "9.What is the headquarter of Bardia?",
+  options: ["Rajapur", "Gulayria", "basgadhi", "nepalgunj"],
+  correctAnswer: "Gulayria"
+},
+{
+  question: "10.What is the square of 25?",
+  options: ["645", "615", "625", "715"],
+  correctAnswer: "625"
+}
+
+];
+
+let currentQuestion = 0;
+
+
+const questionElement = document.getElementById('question');
+const optionsElement = document.getElementById('options');
+const resultElement = document.getElementById('result');
+
+
+function loadQuestion() {
+const currentQuiz = quizData[currentQuestion];
+questionElement.textContent = currentQuiz.question;
+
+optionsElement.innerHTML = "";
+currentQuiz.options.forEach((option, index) => {
+  const optionElement = document.createElement('div');
+  optionElement.className = 'option';
+  optionElement.textContent = option;
+  optionElement.onclick = () => checkAnswer(option, currentQuiz.correctAnswer);
+  optionsElement.appendChild(optionElement);
+});
+}
+
+function checkAnswer(userAnswer, correctAnswer) {
+if (userAnswer === correctAnswer) {
+  resultElement.textContent = "Correct!";
+} else {
+  resultElement.textContent = "Wrong! The correct answer is: " + correctAnswer;
+}
+}
+
+function nextQuestion() {
+currentQuestion++;
+if (currentQuestion < quizData.length) {
+  loadQuestion();
+  resultElement.textContent = "";
+}
+else {
+           result.innerHTML = `
+           <button onclick="location.reload()">Reload</button>
+           `
+       }
+
+}
+loadQuestion();
+
+
+function PrevQuestion() {
+currentQuestion--;
+if (currentQuestion < quizData.length) {
+  loadQuestion();
+  resultElement.textContent = "";
+}
+}
+loadQuestion();
+
+
+</script>
+
+</body>
+</html>

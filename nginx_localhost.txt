@@ -1,0 +1,23 @@
+server {
+        listen 80;
+        root /home/aashish/LoginApp;
+        index index.php index.html index.htm index.nginx-debian.html;
+        server_name localhost;
+        access_log /var/log/nginx/test_access.log;
+        error_log /var/log/nginx/test_error.log;
+
+        location / {
+                try_files $uri $uri/ =404;
+        }
+
+        location ~ \.php$ {
+                include snippets/fastcgi-php.conf;
+                fastcgi_pass unix:/var/run/php/php7.4-fpm.sock;
+        }
+
+        location ~ /\.ht {
+                deny all;
+        }
+}
+
+# i wrote this script to serve php file by nginx in localhost 
